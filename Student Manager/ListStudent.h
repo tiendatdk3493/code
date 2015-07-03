@@ -7,9 +7,18 @@ class ListStudent
 		ListStudent *next;
 	public:
 		ListStudent();
+		ListStudent(Student);
+
 		bool isEmptyList();
-		void insertList(Student);
-		ListStudent getFirstList();
+		int lenList();
+		void insertEndList(Student);
+		void insertList(Student, int);
+		int searchByID(int);
+		Student retrieveStudent(int);
+		void deleteStudent(int);
+		void enterListStudent();
+		void showListStudent();
 		~ListStudent();
 };
 
+void functionList();

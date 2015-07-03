@@ -37,7 +37,8 @@ class Student
 		//orther method
 		void enterInforStudent();
 		void showInforStudent();
-		Student &operator==(Student &);
+		//Student &operator=(Student &);
+		int operator==(Student &);
 		
 		
 

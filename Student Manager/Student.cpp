@@ -59,40 +59,50 @@ void Student::setScore(float score) {
 
 //===============================
 void Student::enterInforStudent() {
-	cout << "Enter information student: " << endl;
-	cout << "\t Id: ";
+	//cout << "Enter information student: " << endl;
+	cout << "\t - Id: ";
 	cin >> id;
 	fflush(stdin);
-	cout << "\t Name: ";
+	cout << "\t - Name: ";
 	cin.getline(name, 50);
-	cout << "\t Age: ";
+	cout << "\t - Age: ";
 	fflush(stdin);
 	cin >> age;
 	fflush(stdin);
-	cout << "\t Address: ";
+	cout << "\t - Address: ";
 	cin.getline(address, 100);
 	fflush(stdin);
-	cout << "\t Score: ";
+	cout << "\t - Score: ";
 	cin >> score;
 	
 }
 
 void Student::showInforStudent() {
-	cout << "Student Information: " << endl;
-	cout << "\t Id: " << id << endl;
-	cout << "\t Name: " << name << endl;
-	cout << "\t Age: " << age << endl;
-	cout << "\t Address: " << address << endl;
-	cout << "\t Score: " << score << endl;
+	//cout << "Student Information: " << endl;
+	cout << "\t \t - Id: " << id << endl;
+	cout << "\t \t - Name: " << name << endl;
+	cout << "\t \t - Age: " << age << endl;
+	cout << "\t \t - Address: " << address << endl;
+	cout << "\t \t - Score: " << score << endl;
 }
 
-Student &Student::operator==(Student &a) {
-	this->id = a.id;
-	strcpy_s(this->name, a.name);
-	this->age = a.age;
-	strcat_s(this->address, a.address);
-	this->score = a.score;
-	return *this;
+//Student &Student::operator=(Student &a) {
+//	this->id = a.id;
+//	strcpy_s(this->name, a.name);
+//	this->age = a.age;
+//	strcat_s(this->address, a.address);
+//	this->score = a.score;
+//	return *this;
+//}
+
+int Student::operator==(Student &a) {
+	if ((this->id == a.id) && (strcmp(this->name, a.name) == 0) && (this->age == a.age) &&
+		(strcmp(this->address, a.address) == 0) && (this->score == a.score)) {
+			return 1;
+	}	
+	else {
+		return 0;
+	}
 }
 Student::~Student() {
 }
