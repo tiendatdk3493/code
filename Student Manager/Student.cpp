@@ -50,7 +50,7 @@ void Student::setAge(int age) {
 }
 
 void Student::setAddress(char *address) {
-	strcpy_s(this->address, name);
+	strcpy_s(this->address, address);
 }
 
 void Student::setScore(float score) {

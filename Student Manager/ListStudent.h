@@ -8,7 +8,10 @@ class ListStudent
 	public:
 		ListStudent();
 		ListStudent(Student);
-
+		void setNameStudent(int, char *);
+		void setAgeStudent(int, int);
+		void setAddressStudent(int, char *);
+		void setScoreStudent(int, float);
 		bool isEmptyList();
 		int lenList();
 		void insertEndList(Student);

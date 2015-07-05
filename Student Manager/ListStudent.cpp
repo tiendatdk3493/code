@@ -12,6 +12,67 @@ ListStudent::ListStudent(const Student st) {
 	(this)->next = NULL;
 }
 
+void ListStudent::setNameStudent(int id, char *name) {
+	ListStudent *Q = this;
+	while (Q != NULL)
+	{
+		if (Q->student.getId() == id) {
+			Q->student.setName(name);
+			break;
+		}
+		else
+		{
+			Q = Q->next;
+		}
+	}
+}
+
+void ListStudent::setAgeStudent(int id, int age) {
+	ListStudent *Q = this;
+	while (Q != NULL)
+	{
+		if (Q->student.getId() == id) {
+			Q->student.setAge(age);
+			break;
+		}
+		else
+		{
+			Q = Q->next;
+		}
+	}
+}
+
+void ListStudent::setAddressStudent(int id, char *address) {
+	ListStudent *Q = this;
+	while (Q != NULL)
+	{
+		if (Q->student.getId() == id) {
+			Q->student.setAddress(address);
+			break;
+		}
+		else
+		{
+			Q = Q->next;
+		}
+	}
+}
+
+void ListStudent::setScoreStudent(int id, float score) {
+	ListStudent *Q = this;
+	while (Q != NULL)
+	{
+		if (Q->student.getId() == id) {
+			Q->student.setScore(score);
+			break;
+		}
+		else
+		{
+			Q = Q->next;
+		}
+	}
+}
+
+
 bool ListStudent::isEmptyList() {
 	return this->next;
 }
@@ -61,20 +122,21 @@ void ListStudent::insertList(Student st, int k) {
 	}
 }
 
+
 int ListStudent::searchByID(int id) {
 	ListStudent *Q = this;
 	int i = 0;
-	while (Q != NULL && (Q->student.getId() != id)) {
+	while (Q != NULL) {
+		if (Q->student.getId() == id) {
+			return i;
+		}
+		else
+		{
+			Q = Q->next;
+		}
 		i++;
-		Q = Q->next;
 	}
-	if (Q != NULL) {
-		return i;
-	}
-	else
-	{
-		return 0;
-	}
+	return 0;
 }
 
 Student ListStudent::retrieveStudent(int k) {
@@ -143,5 +205,6 @@ void functionList() {
 	cout << "\t 4 - Edit Student information in the List " << endl;
 	cout << "\t 5 - Search Student by ID " << endl;
 	cout << "\t 6 - Show List. " << endl;
-	cout << "\t 7 - Exit";
+	cout << "\t 7 - Help" << endl;
+	cout << "\t 8 - Exit";
 }
