@@ -154,19 +154,18 @@ Student ListStudent::retrieveStudent(int k) {
 	}
 }
 
-void ListStudent::deleteStudent(int k){
+void ListStudent::deleteStudent(int id){
 	ListStudent *Q = this;
-	int i = 0;
-	if (k < 1 || k > Q->lenList()) {
-		cout << "This location not found." << endl;
-	}
-	else{
-		while (Q != NULL && i != k-1)
+	while (Q != NULL)
+	{
+		if (Q->next->student.getId() == id) {
+				Q->next = Q->next->next;
+				break;
+		}
+		else
 		{
-			i++;
 			Q = Q->next;
 		}
-		Q->next = Q->next->next;
 	}
 }
 

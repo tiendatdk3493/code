@@ -47,14 +47,14 @@ int main(){
 				}
 			case 3:
 			{
-					int p = 0;
-					cout << "\t>> Select the delete position: ";
-					cin >> p;
-					if (p < 1 || p > listStudent->lenList()) {
-						cout << "\tError postion.! Positon > 0 and <= " << listStudent->lenList() << endl;
+					int id = 0;
+					cout << "\t>> Enter ID: ";
+					cin >> id;
+					if (!listStudent->searchByID(id)) {
+						cout << "\tError delete. ID not exists.! " << endl;
 					}
 					else{
-						listStudent->deleteStudent(p);
+						listStudent->deleteStudent(id);
 					}
 					
 					break;
