@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Vector;
 
 /**
@@ -7,8 +11,9 @@ public class Tree {
     private Integer label;
     private Tree []child;
     public static Vector step;
+    public static BufferedWriter writer;
 
-    public Tree() {
+    public Tree() throws IOException {
         label = 0;
         child = new Tree[5];
         child[0] = null;
@@ -17,6 +22,7 @@ public class Tree {
         child[3] = null;
         child[4] = null;
         step = new Vector <Integer>();
+        writer = new BufferedWriter(new FileWriter(new File("out.txt")));
     }
 
 //    public Tree(int n) {
@@ -42,11 +48,11 @@ public class Tree {
         this.label = label;
     }
 
-    public void setChild(int p, Tree tree) {
+    public void setChild(int p, Tree tree) throws IOException {
         tree = new Tree();
         child[p] = tree;
     }
-    public void createTree(Integer root, Vector <Integer> A) {
+    public void createTree(Integer root, Vector <Integer> A) throws IOException {
         if(A.size() == 1){
             if(Math.abs(A.get(0) - root) < 4) {
                 Tree treeTemp = new Tree();
@@ -72,15 +78,19 @@ public class Tree {
         }
     }
 
-    public void steps(int n) {
+    public void steps(int n) throws IOException {
         if(this.child[0] == null){
             Integer lastElement = (Integer) step.lastElement();
             if((n - lastElement) < 4 && step.size() == n-2) {
-                System.out.print("1->");
+                //System.out.print("1->");
+                writer.write(1 + "->");
                 for (int i = 0; i < step.size(); i++) {
-                    System.out.print(step.get(i) + "->");
+                    //System.out.print(step.get(i) + "->");
+                    writer.write(step.get(i) + "->");
                 }
-                System.out.println(n);
+                writer.write(n + "");
+                writer.newLine();
+                //System.out.println(n);
             }
         } else {
             int i = 0;
@@ -93,10 +103,10 @@ public class Tree {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Tree tree = new Tree();
         Vector A = new Vector<Integer>();
-        int n = 5;
+        int n = 18;
         for(int i = 0; i < n-1; i++) {
             A.insertElementAt(i+1, i);
         }
@@ -105,6 +115,7 @@ public class Tree {
         tree.setLabel(root);
         tree.createTree(root, A);
         tree.steps(n);
+        writer.close();
     }
 
 }
