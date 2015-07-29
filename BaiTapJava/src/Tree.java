@@ -61,19 +61,25 @@ public class Tree {
             }
         } else {
             int i = 0;
-            while ((i < A.size()) && (A.get(i) - root) != 0 && Math.abs(A.get(i) - root) < 4) {
-                Tree treeTemp = new Tree();
-                treeTemp.setLabel(A.get(i));
-                this.child[i] = treeTemp;
+            int t = 0;
+            while (i < A.size()) {
+                if(Math.abs(A.get(i) - root) < 4) {
+                    Tree treeTemp = new Tree();
+                    treeTemp.setLabel(A.get(i));
+                    this.child[t] = treeTemp;
 
-                Vector B = new Vector<Integer>();
-                for (int k = 0; k < A.size(); k++) {
-                    B.insertElementAt(A.get(k), k);
+                    Vector B = new Vector<Integer>();
+                    for (int k = 0; k < A.size(); k++) {
+                        B.insertElementAt(A.get(k), k);
+                    }
+                    Integer subRoot = (Integer) B.get(i);
+                    B.remove(subRoot);
+                    treeTemp.createTree(subRoot, B);
+                    t++;
+                    i++;
+                } else {
+                    i++;
                 }
-                Integer subRoot = (Integer) B.get(i);
-                B.remove(subRoot);
-                treeTemp.createTree(subRoot, B);
-                i++;
             }
         }
     }
@@ -94,7 +100,7 @@ public class Tree {
             }
         } else {
             int i = 0;
-            while (i < 3 && this.child[i] != null) {
+            while (i < 5 && this.child[i] != null) {
                 step.add(this.child[i].label);
                 this.child[i].steps(n);
                 step.remove(this.step.lastElement());
@@ -106,7 +112,7 @@ public class Tree {
     public static void main(String[] args) throws IOException {
         Tree tree = new Tree();
         Vector A = new Vector<Integer>();
-        int n = 18;
+        int n = 11;
         for(int i = 0; i < n-1; i++) {
             A.insertElementAt(i+1, i);
         }
@@ -117,5 +123,4 @@ public class Tree {
         tree.steps(n);
         writer.close();
     }
-
 }
